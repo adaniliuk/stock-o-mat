@@ -6,7 +6,24 @@ function QuotesController($scope) {
         {symbol: "MSFT", price: 40.49, priceChange: 0.33, percentChange: 0.82}
     ];
 
+    $scope.getPriceStyle = function(quote) {
+        if (quote.priceChange >= 0) {
+            return "numeric text-success";
+        } else {
+            return "numeric text-danger";
+        }
+    };
+
     $scope.updated = function () {
         return 15;
+    };
+
+    $scope.addQuote = function () {
+        $scope.quotes.push(
+            {
+                symbol: $scope.symbolText, price: 0, priceChange: 0, percentChange: 0
+            }
+        );
+        $scope.symbolText = "";
     };
 }
