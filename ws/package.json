@@ -1,0 +1,9 @@
+{
+    "name": "stock-o-mat-api",
+    "description": "stock-o-mat rest api",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+        "express": "4.3.1"
+    }
+}

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>stock-o-mat: personal stock machine</title>
+    <title>stock-o-mat: personal stock machine (AngularJS version)</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/flatly/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <link rel="stylesheet" href="css/main.css">
@@ -18,7 +18,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <h1 class="text-center">stock-o-mat: personal stock machine</h1>
+                <h1 class="text-center">stock-o-mat: personal stock machine (an)</h1>
+                <hr />
             </div>
         </div>
         <div class="row" ng-controller="QuotesController">
@@ -43,7 +44,7 @@
                 <form ng-submit="addQuote()" class="form-inline text-right" role="form">
                     <div class="form-group">
                         <label class="sr-only" for="symbolText">Quote symbol</label>
-                        <input ng-model="symbolText" type="text" class="form-control" id="symbolText" placeholder="Enter quote symbol">
+                        <input ng-model="symbolText" required type="text" class="form-control" id="symbolText" placeholder="Enter quote symbol">
                     </div>
                     <button class="btn btn-default" type="submit">Add</button>
                 </form>
