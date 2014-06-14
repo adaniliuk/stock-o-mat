@@ -35,7 +35,7 @@
         <form class="form-inline text-right" id="addSymbolForm">
           <div class="form-group">
             <label class="sr-only" for="symbolText">Quote symbol</label>
-            <input type="text" class="form-control" id="symbolText" name="symbolText" placeholder="Enter quote symbol">
+            <input type="text" class="form-control" id="symbolText" name="symbolText" placeholder="Enter quote symbol" required>
           </div>
           <button class="btn btn-default" type="submit">Add</button>
         </form>
@@ -61,7 +61,7 @@
       <% var quotePriceChange = quote.get('priceChange'); %>
       <% var priceStyle = getPriceStyle(quotePriceChange); %>
       <tr>
-        <td><%= htmlEncode(quote.get('symbol')) %></td>
+        <td><%= htmlEncode(quote.get('id')) %></td>
         <td class="numeric text-info"><%= htmlEncode(quote.get('price')) %></td>
         <td class="numeric <%= priceStyle %>"><%= htmlEncode(quotePriceChange) %></td>
         <td class="numeric <%= priceStyle %>"><%= htmlEncode(quote.get('percentChange')) %>&nbsp;%</td>
