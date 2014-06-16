@@ -12,6 +12,7 @@
   // add require.js support
   // separate templates
   // build js
+  // add unit tests
   // build deployment package
   // deploy (check github, heroku, etc)
 
