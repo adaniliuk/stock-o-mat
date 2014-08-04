@@ -1,5 +1,4 @@
 ﻿// todo:
-// ticker symbol encoding is required (frontend/backend)
 // update quotes every 1? minute (should be configurable)
 // display updated ago time (should take into account market status)
 // add remove quote(s) option
