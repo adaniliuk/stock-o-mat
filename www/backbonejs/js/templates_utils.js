@@ -1,18 +1,26 @@
-var styleConfig = {
-	colorStyle: {
-		positive: 'text-success',
-		negative: 'text-danger'
-	}
-};
+var StockMachine = StockMachine || {};
 
-function getPriceStyle(change) {
-	if (change >= 0) {
-		return styleConfig.colorStyle.positive;
-	} else {
-		return styleConfig.colorStyle.negative;
-	}			
-}
+$(function() {
+    'use strict';
 
-function htmlEncode(value) {
-	return $('<div/>').text(value).html();
-}
+    var styleConfig = {
+        colorStyle: {
+            positive: 'text-success',
+            negative: 'text-danger'
+        }
+    };
+
+    StockMachine.Html = StockMachine.Html || {};
+
+    StockMachine.Html.getPriceStyle = function(change) {
+        if (change >= 0) {
+            return styleConfig.colorStyle.positive;
+        } else {
+            return styleConfig.colorStyle.negative;
+        }
+    }
+
+    StockMachine.Html.htmlEncode = function(value) {
+        return $('<div/>').text(value).html();
+    }
+}());
