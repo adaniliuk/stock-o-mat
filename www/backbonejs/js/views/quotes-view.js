@@ -15,9 +15,14 @@ var StockMachine = StockMachine || {};
 
             this.listenTo(StockMachine.quotes, 'quotes:priceSet', this.addAllQuoteViews);
 
+            this.fetchQuotes();
+
+            this.intervalId = window.setInterval(this.fetchQuotes, 60000); //todo: 1min, move to config
+        },
+        fetchQuotes: function() {
             StockMachine.quotes.fetch({ reset: true });
         },
-        render: function () {
+        render: function() {
             //todo: render statistics (e.g. updated ago time)
         },
         addQuoteView: function(quote) {
