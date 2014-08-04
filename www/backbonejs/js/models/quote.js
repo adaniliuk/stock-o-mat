@@ -5,7 +5,6 @@ var StockMachine = StockMachine || {};
 
     // Quote model
     StockMachine.Quote = Backbone.Model.extend({
-        idAttribute: 'symbol',
         defaults: function () {
             return {
                 price: 0,
@@ -14,12 +13,14 @@ var StockMachine = StockMachine || {};
             };
         },
         validate: function (attrs, options) {
-            // todo: add validation against symbol format
+            // todo: add validation against ticker symbol format
             // todo: add validation to check if symbol is real
-            if (!attrs.id) { // id is presented by quote symbol, e.g. GOOG
-                return 'Symbol cannot be empty!';
+            if (!attrs.id) { // id is presented by quote symbol, e.g. GOOG, MSFT, etc.
+                return 'Ticker symbol cannot be empty!';
+            }
+            if (attrs.price < 0) {
+                return 'Price should be positive!';
             }
         }
     });
 }());
-

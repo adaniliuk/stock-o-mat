@@ -3,7 +3,7 @@ var StockMachine = StockMachine || {};
 (function() {
     'use strict';
 
-    // Main app router
+    // Main app router (left for future)
     StockMachine.Router = Backbone.Router.extend({
         routes: {
             '': 'home'

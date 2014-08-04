@@ -13,7 +13,6 @@ var StockMachine = StockMachine || {};
             this.$quotes = $('#quotes');
             this.$symbolInput = $('#symbolText');
 
-            //this.listenTo(StockMachine.quotes, 'add', this.addQuoteView);
             this.listenTo(StockMachine.quotes, 'quotes:priceSet', this.addAllQuoteViews);
 
             StockMachine.quotes.fetch({ reset: true });

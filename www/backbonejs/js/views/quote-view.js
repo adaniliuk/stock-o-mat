@@ -11,7 +11,6 @@ var StockMachine = StockMachine || {};
             'click .delete': 'deleteQuote'
         },
         render: function () {
-            console.log('render model: ' + this.model.get('id'));
             this.$el.html(this.template(this.model.toJSON()));
             return this;
         },

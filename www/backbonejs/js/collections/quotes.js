@@ -17,36 +17,30 @@ var StockMachine = StockMachine || {};
             this.fetchPriceDataFromServer(symbols);
         },
         fetchPriceDataFromServer: function (symbols) {
-            var that = this;
-            var sParam = symbols.join('+');
-            var url = '//localhost:4711/quotes/' + sParam; //todo: revise url configuration
+            if (0 === symbols.length) return;
 
-             $.getJSON(url).done(function(data) {
+            var that = this;
+            var sParam = _.map(symbols, function(symbol) {
+                return encodeURIComponent(symbol);
+            }).join('+');
+            var url = '/quotes/' + sParam;
+
+            $.getJSON(url).done(function(data) {
                 if (data) {
                     that.priceData = data;
                     that.trigger('quotes:priceReceived');
-                    // todo: update time
                 }
-             });
-
-            // temporary return test data
-            //var priceData = [
-            //    { symbol: "GOOG", price: 1157.93, priceChange: -25.11, percentChange: -2.12 },
-            //    { symbol: "FB", price: 64.10, priceChange: -3.14, percentChange: -4.67 },
-            //    { symbol: "EPAM", price: 32.12, priceChange: -0.32, percentChange: -0.99 },
-            //    { symbol: "MSFT", price: 40.49, priceChange: 0.33, percentChange: 0.82 }
-            //];
+            });
         },
         setPriceData: function() {
-            var that = this;
             this.forEach(function(quote) {
-                var quotePrice = _.find(that.priceData, function (price) {
+                var quotePrice = _.find(this.priceData, function (price) {
                     return price.symbol == quote.get('id');
                 });
                 if (quotePrice) {
-                    quote.set(quotePrice); //todo: revise this
+                    quote.set(quotePrice, { silent:true });
                 }
-            });
+            }, this);
             this.trigger('quotes:priceSet');
         }
     });
