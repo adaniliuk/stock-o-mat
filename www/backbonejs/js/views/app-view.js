@@ -19,7 +19,7 @@ var StockMachine = StockMachine || {};
             this.listenTo(StockMachine.quotes, 'quotes:priceSet', this.render);
 
             this.fetchQuotes();
-            this.quotesIntervalId = window.setInterval(this.fetchQuotes, 600000); //todo: 1min, move to config
+            this.quotesIntervalId = window.setInterval(this.fetchQuotes, 60000); //todo: 1min, move to config
             this.statsIntervalId = window.setInterval(this.updateStatistics, 15000, this); //todo: 15seconds, move to config
         },
         fetchQuotes: function() {
