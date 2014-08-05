@@ -9,7 +9,7 @@
         local: 'local', // local data is returned
         web: 'web' // web finance api data is returned
     };
-    var mode = modes.local; //
+    var mode = modes.web; //
 
     var env = process.env.NODE_ENV || 'development';
     var port = process.env.PORT || 4711; //todo: move to config?
