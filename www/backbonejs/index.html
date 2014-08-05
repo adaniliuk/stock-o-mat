@@ -5,13 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>stock-o-mat: personal stock machine (BackboneJS version)</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/flatly/bootstrap.min.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <link rel="stylesheet" href="css/libs/flatly.bootstrap.min.css">
+    <link rel="stylesheet" href="css/libs/font-awesome.min.css">
     <link rel="stylesheet" href="css/main.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <script src="js/libs/html5shiv.min.js"></script>
+        <script src="js/libs/respond.min.js"></script>
     <![endif]-->
 </head>
 <body>
@@ -70,14 +70,15 @@
         <td class="numeric <%= priceStyle %>"><%- priceChange %></td>
         <td class="numeric <%= priceStyle %>"><%- percentChange %></td>
     </script>
-    <!-- Replace with appropriate Require.JS configuration
-    <script data-main="js/main" src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.11/require.min.js"></script>
-    -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/backbone-localstorage.js/1.1.7/backbone.localStorage-min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+    <!-- Replace with appropriate Require.JS configuration -->
+
+    <script src="js/libs/jquery.min.js"></script>
+    <script src="js/libs/underscore-min.js"></script>
+    <script src="js/libs/backbone-min.js"></script>
+    <script src="js/libs/backbone.localStorage-min.js"></script>
+    <script src="js/libs/bootstrap.min.js"></script>
+
     <script src="js/models/quote.js"></script>
     <script src="js/collections/quotes.js"></script>
     <script src="js/views/quote-view.js"></script>
