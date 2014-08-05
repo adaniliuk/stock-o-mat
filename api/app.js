@@ -5,6 +5,12 @@
         request = require('request'),
         csvparser = require('csv-parse');
 
+    var modes = {
+        local: 'local', // local data is returned
+        web: 'web' // web finance api data is returned
+    };
+    var mode = modes.local; //
+
     var env = process.env.NODE_ENV || 'development';
     var port = process.env.PORT || 4711; //todo: move to config?
     var appRoot = __dirname;
@@ -31,31 +37,38 @@
             return next(new Error('Missing symbols list'));
         }
 
-        var sParam = symbols
-            .map(function(symbol) {
-                return encodeURIComponent(symbol);
-            })
-            .join('+');
-        var requestUrl = financeApiUrl.replace('{quotes}', sParam);
+        if (modes.web === mode) {
+            var sParam = symbols
+                .map(function (symbol) {
+                    return encodeURIComponent(symbol);
+                })
+                .join('+');
+            var requestUrl = financeApiUrl.replace('{quotes}', sParam);
 
-        // retrieves quotes info from yahoo finance api
-        request(requestUrl, function (quotesErr, quotesRes, data) {
-            if (quotesErr || 200 !== quotesRes.statusCode) {
-                return next(quotesErr);
-            }
-            if (!data) {
-                return next(new Error('Requested symbols quotes are missing'));
-            }
-
-            // parses price data from CSV to JSON format
-            csvparser(data, parseOptions, function (parseErr, quotes) {
-                if (parseErr) {
-                    return next(parseErr);
+            // retrieves quotes info from yahoo finance api
+            request(requestUrl, function (quotesErr, quotesRes, data) {
+                if (quotesErr || 200 !== quotesRes.statusCode) {
+                    return next(quotesErr);
+                }
+                if (!data) {
+                    return next(new Error('Requested symbols quotes are missing'));
                 }
 
-                return res.json(quotes);
+                // parses price data from CSV to JSON format
+                csvparser(data, parseOptions, function (parseErr, quotes) {
+                    if (parseErr) {
+                        return next(parseErr);
+                    }
+
+                    return res.json(quotes);
+                });
             });
-        });
+        } else {
+            var data = [
+                {symbol: "GOOG", price: 1157.93, priceChange: -25.11, percentChange: -2.12},
+                {symbol: "FB", price: 64.10, priceChange: -3.14, percentChange: -4.67}];
+            return res.json(data);
+        }
     });
 
     // other cases route simply returns some help info
