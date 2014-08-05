@@ -24,7 +24,7 @@ var StockMachine = StockMachine || {};
 
             this.fetchQuotes();
             this.quotesIntervalId = window.setInterval(this.fetchQuotes, 60000); //todo: 1min, move to config
-            this.statsIntervalId = window.setInterval(this.updateStatistics, 15000, this); //todo: 15seconds, move to config
+            this.statsIntervalId = window.setInterval(this.updateStatistics, 8000, this); //todo: 8seconds, move to config
         },
         fetchQuotes: function() {
             StockMachine.quotes.fetch({ reset: true });
