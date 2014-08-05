@@ -1,5 +1,4 @@
 ﻿// todo:
-// display updated ago time (should take into account market status)
 // review all todo(s) at frontend and backend
 // fix styles
 // add require.js support
@@ -13,6 +12,7 @@
 // add some default quotes set
 // add rearrange quotes option
 // add ticker lookup function
+// display updated ago time taking into account market status
 
 var StockMachine = StockMachine || {};
 

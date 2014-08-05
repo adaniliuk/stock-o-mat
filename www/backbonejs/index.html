@@ -48,13 +48,10 @@
     <script type="text/template" id="stats-template">
         <%
         var updated = '';
-        if (elapsed < 60) {
-            updated = elapsed + ' second(s) ago';
-        } else if (elapsed < 3600) {
-            elapsed = Math.ceil(elapsed / 60);
-            updated = elapsed + ' minute(s) ago';
+        if (elapsed < 3600) {
+            updated = moment(lastUpdatedTime).fromNow();
         } else {
-            updated = new Date(lastUpdatedTime).toLocaleString();
+            updated = moment(lastUpdatedTime).format('MMMM Do, h:mm a');
         }
         %>
         Updated: <%= updated %>
@@ -82,6 +79,7 @@
     <script src="js/libs/backbone-min.js"></script>
     <script src="js/libs/backbone.localStorage-min.js"></script>
     <script src="js/libs/bootstrap.min.js"></script>
+    <script src="js/libs/moment.min.js"></script>
 
     <script src="js/models/quote.js"></script>
     <script src="js/collections/quotes.js"></script>
