@@ -9,7 +9,8 @@ var StockMachine = StockMachine || {};
         // Local Storage is required to keep symbols list persistent
         localStorage: new Backbone.LocalStorage('stock-o-mat-quotes'),
         initialize: function () {
-            this.on('sync', this.fetchPriceData);
+            this.on('reset', this.fetchPriceData);
+            this.on('add', this.fetchPriceData);
             this.on('quotes:priceReceived', this.setPriceData);
         },
         fetchPriceData: function () {
@@ -33,12 +34,10 @@ var StockMachine = StockMachine || {};
             });
         },
         setPriceData: function() {
-            this.forEach(function(quote) {
-                var quotePrice = _.find(this.priceData, function (price) {
-                    return price.symbol == quote.get('id');
-                });
-                if (quotePrice) {
-                    quote.set(quotePrice, { silent:true });
+            this.priceData.forEach(function(price) {
+                var quote = this.findWhere({ id: price.symbol });
+                if (quote) {
+                    quote.set(price, { silent:true });
                 }
             }, this);
             this.trigger('quotes:priceSet');
