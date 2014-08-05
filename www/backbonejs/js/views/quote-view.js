@@ -10,12 +10,21 @@ var StockMachine = StockMachine || {};
         events: {
             'click .delete': 'deleteQuote'
         },
+        initialize: function(options) {
+            this.options = options || {};
+        },
         render: function () {
-            this.$el.html(this.template(this.model.toJSON()));
+            var templateData = {
+                quote: this.model.toJSON(),
+                options: {
+                    deleteDisplayed: this.options.deleteDisplayed
+                }
+            };
+            this.$el.html(this.template(templateData));
             return this;
         },
         deleteQuote: function() {
-            this.model.destroy();
+            this.model.destroy({ silent: true });
             this.remove();
         }
     });

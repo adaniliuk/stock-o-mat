@@ -7,13 +7,17 @@ var StockMachine = StockMachine || {};
     StockMachine.AppView = Backbone.View.extend({
         el: '#quotesApp',
         events: {
-            'submit #addSymbolForm': 'symbolSubmitted'
+            'submit #addSymbolForm': 'symbolSubmitted',
+            'click .refresh': 'fetchQuotes',
+            'click .options': 'toggleDelete'
         },
         initialize: function() {
             this.$quotes = $('#quotes');
             this.$statsBlock = $('#quotesStats');
             this.statsTemplate = _.template($('#stats-template').html());
             this.$symbolInput = $('#symbolText');
+
+            this.deleteDisplayed = false; // defines current delete buttons visibility
 
             this.listenTo(StockMachine.quotes, 'quotes:priceSet', this.updateQuotes);
             this.listenTo(StockMachine.quotes, 'quotes:priceSet', this.render);
@@ -30,7 +34,10 @@ var StockMachine = StockMachine || {};
             return this;
         },
         addQuoteView: function(quote) {
-            var view = new StockMachine.QuoteView({ model: quote });
+            var view = new StockMachine.QuoteView({
+                model: quote,
+                deleteDisplayed: this.deleteDisplayed
+            });
             this.$quotes.append(view.render().el);
         },
         updateQuotes: function() {
@@ -60,6 +67,10 @@ var StockMachine = StockMachine || {};
         },
         addNewQuote: function (symbol) {
             return StockMachine.quotes.create({ id: symbol });
+        },
+        toggleDelete: function() {
+            this.deleteDisplayed = !this.deleteDisplayed;
+            $('.delete').toggleClass('hidden');
         }
     });
 }());

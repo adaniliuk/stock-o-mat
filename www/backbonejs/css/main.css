@@ -6,3 +6,12 @@ h2 {
 td.numeric {
     text-align: right;
 }
+
+a>span.delete {
+    margin-left: 5px;
+}
+
+a>span.options {
+    margin-left: 10px !important;
+    margin-right: -7px;
+}

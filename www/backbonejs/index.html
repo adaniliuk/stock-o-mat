@@ -26,7 +26,8 @@
             <div class="col-md-6 col-md-offset-3" id="quotesApp">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <a href=""><span class="fa fa-cog pull-right text-primary"></span></a>
+                        <a href="#" title="manage tickers"><span class="fa fa-cog pull-right text-primary options"></span></a>
+                        <a href="#" title="refresh"><span class="fa fa-refresh pull-right text-primary refresh"></span></a>
                         <h2>Today quotes</h2>
                         <div id="quotesStats"></div>
                     </div>
@@ -61,14 +62,17 @@
     <script type="text/template" id="quote-template">
         <%
         var priceStyle = 'text-success';
-        if (priceChange < 0) {
+        if (quote.priceChange < 0) {
             priceStyle = 'text-danger';
         }
         %>
-        <td><%- id %></td>
-        <td class="numeric text-info"><%- price %></td>
-        <td class="numeric <%= priceStyle %>"><%- priceChange %></td>
-        <td class="numeric <%= priceStyle %>"><%- percentChange %></td>
+        <td><%- quote.id %></td>
+        <td class="numeric text-info"><%- quote.price %></td>
+        <td class="numeric <%= priceStyle %>"><%- quote.priceChange %></td>
+        <td class="numeric <%= priceStyle %>"><%- quote.percentChange %>
+            <a href="#" title="delete ticker">
+                <span class="fa fa-times text-primary delete <% if (!options.deleteDisplayed) { print('hidden'); } %>"></span></a>
+        </td>
     </script>
 
     <!-- Replace with appropriate Require.JS configuration -->
