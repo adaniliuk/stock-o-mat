@@ -1,0 +1,13 @@
+{
+    "env": {
+        "environment": "development",
+        "returnStatic": true,
+        "httpPort": 4711
+    },
+    "financeApiUrl": "http://finance.234yahoo.com/d/quotes.csv?s={quotes}&f=sl1c1p2",
+    "useFinanceApi": true,
+    "mockData": [
+        { "symbol": "GOOG", "price": 1157.93, "priceChange": -25.11, "percentChange": -2.12 },
+        { "symbol": "FB", "price": 64.10, "priceChange": -3.14, "percentChange": -4.67 }
+    ]
+}

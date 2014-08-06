@@ -3,29 +3,27 @@
 
     var express = require('express'),
         request = require('request'),
-        csvparser = require('csv-parse');
+        csvparser = require('csv-parse'),
+        config = require('./config.json');
 
-    var modes = {
-        local: 'local', // local data is returned
-        web: 'web' // web finance api data is returned
-    };
-    var mode = modes.web; //
+    var env = process.env.NODE_ENV || config.env.environment,
+        port = process.env.PORT || config.env.httpPort,
+        appRoot = __dirname;
 
-    var env = process.env.NODE_ENV || 'development';
-    var port = process.env.PORT || 4711; //todo: move to config?
-    var appRoot = __dirname;
-
-    var financeApiUrl = 'http://finance.yahoo.com/d/quotes.csv?s={quotes}&f=sl1c1p2'; //todo: move to config?
-    var parseOptions = {
-        columns: ['symbol', 'price', 'priceChange', 'percentChange'],
-        auto_parse: true
-    };
+    var useFinanceApi = config.useFinanceApi, // defines whethe mock or finance api data is returned
+        financeApiUrl = config.financeApiUrl,
+        parseOptions = {
+            columns: ['symbol', 'price', 'priceChange', 'percentChange'],
+            auto_parse: true
+        };
 
     // init express app
     var app = express();
 
-    // application returns client app static, so static middleware should be configured
-    app.use(express.static(appRoot + '/../www'));
+    if (config.env.returnStatic) {
+        // application returns client app static, so static middleware should be configured
+        app.use(express.static(appRoot + '/../www'));
+    }
 
     // quotes api route returns quotes price data
     // [{symbol: "GOOG", price: 1157.93, priceChange: -25.11, percentChange: -2.12},
@@ -37,7 +35,7 @@
             return next(new Error('Missing symbols list'));
         }
 
-        if (modes.web === mode) {
+        if (useFinanceApi) {
             var sParam = symbols
                 .map(function (symbol) {
                     return encodeURIComponent(symbol);
@@ -64,9 +62,7 @@
                 });
             });
         } else {
-            var data = [
-                {symbol: "GOOG", price: 1157.93, priceChange: -25.11, percentChange: -2.12},
-                {symbol: "FB", price: 64.10, priceChange: -3.14, percentChange: -4.67}];
+            var data = config.mockData;
             return res.json(data);
         }
     });
