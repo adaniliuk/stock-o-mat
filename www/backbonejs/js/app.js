@@ -7,6 +7,7 @@
 // build deployment package
 // little bit too slow on load and new quote addition
 // add load spinner?
+// display error panel if something happens
 // deploy (check github, heroku, etc)
 // add some default quotes set
 // add rearrange quotes option
