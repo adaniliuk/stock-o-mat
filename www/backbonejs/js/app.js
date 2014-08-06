@@ -1,5 +1,4 @@
 ﻿// todo:
-// review all todo(s) at frontend and backend
 // fix styles
 // add require.js support
 // separate templates

@@ -69,7 +69,7 @@
 
     // other cases route simply returns some help info
     app.get('*', function (req, res) {
-        res.sendfile('help.html'); // todo: use template instead?
+        res.sendfile('help.html');
     });
 
     // global error handler

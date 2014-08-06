@@ -23,8 +23,8 @@ var StockMachine = StockMachine || {};
             this.listenTo(StockMachine.quotes, 'quotes:priceSet', this.render);
 
             this.fetchQuotes();
-            this.quotesIntervalId = window.setInterval(this.fetchQuotes, 60000); //todo: 1min, move to config
-            this.statsIntervalId = window.setInterval(this.updateStatistics, 8000, this); //todo: 8seconds, move to config
+            this.quotesIntervalId = window.setInterval(this.fetchQuotes, 60000); // 1 minute
+            this.statsIntervalId = window.setInterval(this.updateStatistics, 5000, this); // 5 seconds
         },
         fetchQuotes: function() {
             StockMachine.quotes.fetch({ reset: true });
