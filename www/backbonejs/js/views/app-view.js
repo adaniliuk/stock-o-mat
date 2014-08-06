@@ -66,7 +66,7 @@ var StockMachine = StockMachine || {};
             return false; // return false so form is not submitted
         },
         addNewQuote: function (symbol) {
-            return StockMachine.quotes.create({ id: symbol });
+            return StockMachine.quotes.create({ id: symbol }, { validate: true });
         },
         toggleDelete: function() {
             this.deleteDisplayed = !this.deleteDisplayed;

@@ -36,7 +36,7 @@
                 <form class="form-inline text-right" id="addSymbolForm">
                     <div class="form-group">
                         <label class="sr-only" for="symbolText">Quote symbol</label>
-                        <input type="text" class="form-control" id="symbolText" name="symbolText" placeholder="Enter quote symbol" required>
+                        <input type="text" class="form-control" id="symbolText" name="symbolText" placeholder="Enter quote symbol" required pattern="^[A-Za-z0-9]+\.{1,1}[A-Za-z0-9]+$|^[A-Za-z0-9]+$">
                     </div>
                     <button class="btn btn-default" type="submit">Add</button>
                 </form>
@@ -48,7 +48,7 @@
     <script type="text/template" id="stats-template">
         <%
         var updated = '';
-        if (elapsed < 3600) {
+        if (elapsed < 3600) { // 1 hour
             updated = moment(lastUpdatedTime).fromNow();
         } else {
             updated = moment(lastUpdatedTime).format('MMMM Do, h:mm a');
