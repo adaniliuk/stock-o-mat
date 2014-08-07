@@ -1,0 +1,13 @@
+<%
+var priceStyle = 'text-success';
+if (quote.priceChange < 0) {
+    priceStyle = 'text-danger';
+}
+%>
+<td><%- quote.id %></td>
+<td class="numeric text-info"><%- quote.price %></td>
+<td class="numeric <%= priceStyle %>"><%- quote.priceChange %></td>
+<td class="numeric <%= priceStyle %>"><%- quote.percentChange %>
+    <a href="#" title="delete ticker">
+        <span class="fa fa-times text-primary delete <% if (!options.deleteDisplayed) { print('hidden'); } %>"></span></a>
+</td>

@@ -1,16 +1,12 @@
-var StockMachine = StockMachine || {};
-
-(function() {
+define(['backbone'], function(Backbone) {
     'use strict';
 
     // Quote model
-    StockMachine.Quote = Backbone.Model.extend({
-        defaults: function () {
-            return {
-                price: 0,
-                priceChange: 0,
-                percentChange: 0
-            };
+    var Quote = Backbone.Model.extend({
+        defaults: {
+            price: 0,
+            priceChange: 0,
+            percentChange: 0
         },
         symbolFormat: /^[A-Za-z0-9]+\.{1,1}[A-Za-z0-9]+$|^[A-Za-z0-9]+$/,
         validate: function (attrs, options) {
@@ -25,4 +21,5 @@ var StockMachine = StockMachine || {};
             }
         }
     });
-}());
+    return Quote;
+});

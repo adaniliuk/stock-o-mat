@@ -1,0 +1,9 @@
+<%
+var updated = '';
+if (elapsed < 3600) { // 1 hour
+    updated = momentApi(lastUpdatedTime).fromNow();
+} else {
+    updated = momentApi(lastUpdatedTime).format('MMMM Do, h:mm a');
+}
+%>
+Updated: <%= updated %>
